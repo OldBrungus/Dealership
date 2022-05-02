@@ -1,0 +1,180 @@
+﻿@using System.Globalization;
+@model Dealership.Models.PurchaseViewModel
+
+@{
+    ViewBag.Title = "Purchase";
+    var base64 = Convert.ToBase64String(Model.Vehicle.Picture);
+    var imgSrc = String.Format("data:image/*;base64,{0}", base64);
+    SelectList states = new SelectList(Model.States, "ID", "StateAbbreviation");
+    SelectList purchaseTypes = new SelectList(Model.PurchaseTypes, "ID", "PurchaseTypeName");
+}
+
+<h2>Purchase</h2>
+
+<div>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                @Model.Vehicle.Year @Model.Vehicle.Make.DisplayName @Model.Vehicle.Model.DisplayName
+            </div>
+        </div>
+        <div class="row inventory-item">
+            <div class="col-sm-3">
+                <img src="@imgSrc" />
+            </div>
+            <div class="col-sm-8 col-sm-offset-1">
+                <div class="row">
+                    <div class="col-sm-4">
+                        Body Style: @Model.Vehicle.BodyStyle.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        Interior: @Model.Vehicle.Interior.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        Sale Price: @Model.Vehicle.SalePrice.ToString("C", CultureInfo.CurrentCulture)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Trans: @Model.Vehicle.TransmissionType.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        Mileage: @Model.Vehicle.Mileage
+                    </div>
+                    <div class="col-sm-4">
+                        MSRP: @Model.Vehicle.MSRP.ToString("C", CultureInfo.CurrentCulture)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Color: @Model.Vehicle.Color.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        VIN #: @Model.Vehicle.VIN
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        Description: @Model.Vehicle.Description
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h2>Sales Information</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Name</label>
+        </div>
+
+        <div class="col-md-6">
+            <label>Phone</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" id="name" />
+        </div>
+
+        <div class="col-md-6">
+            <input type="text" id="phone"/>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Email</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" id="email" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Street 1</label>
+        </div>
+
+        <div class="col-md-6">
+            <label>Street 2</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" id="street1" />
+        </div>
+
+        <div class="col-md-6">
+            <input type="text" id="street2" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>City</label>
+        </div>
+
+        <div class="col-md-6">
+            <label>State</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" id="city" />
+        </div>
+
+        <div class="col-md-6">
+            @Html.DropDownList("State", states, new {@id = "state"})
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <label>Purchase Price</label>
+        </div>
+
+        <div class="col-md-6">
+            <label>Purchase Type</label>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" id="purchase-price" />
+        </div>
+
+        <div class="col-md-6">
+            @Html.DropDownList("PurchaseType", purchaseTypes, new { @id = "purchaseType" })
+        </div>
+    </div>
+
+    <input type="hidden" value="@Model.Vehicle.ID" id="vehicleID"/>
+
+    <button class="btn btn-primary" id="submit-button">Submit</button>
+
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/purchase.js"></script>    
+}
+
+
+

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Dealership.Models.Vehicle>
+
+@{
+    ViewBag.Title = "Used Vehicles";
+}
+
+<h2>Used Vehicles</h2>
+
+<div class="search-box container">
+    <h3>Quick Search</h3>
+    <div class="row filters-row">
+        <div class="col-sm-2">
+            <input type="text" placeholder="Enter make, model, or year" />
+        </div>
+        <div class="col-sm-6 col-sm-offset-1">
+            Price <input type="number" id="minPrice" placeholder="Min Price" />
+            - <input type="number" id="maxPrice" placeholder="Max Price" />
+        </div>
+        <div class="col-sm-3">
+            Year <input type="number" maxlength="4" min="1950" max="2022" id="minYear" placeholder="Min Year" />
+            - <input type="number" maxlength="4" min="1950" max="2022" id="maxYear" placeholder="Max Year" />
+        </div>
+    </div>
+    <div class="row buttons-row">
+        <div class="col-xs-6 col-xs-offset-5">
+            <button id="used-search-btn">Search</button>
+        </div>
+    </div>
+</div>
+
+<h2>Search Results</h2>
+<div class="inventory-list container">
+
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/inventorySearch.js"></script>
+}
+
+@section styles
+{
+    <link rel="stylesheet" href="~/Content/inventorySearch.css" />  
+}

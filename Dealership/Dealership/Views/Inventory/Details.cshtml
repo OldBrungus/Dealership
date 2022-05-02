@@ -1,0 +1,72 @@
+﻿@using System.Globalization;
+@model Dealership.Models.Vehicle
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Vehicle Details</h2>
+
+<div>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                @Model.Year @Model.Make.DisplayName @Model.Model.DisplayName
+            </div>
+        </div>
+        <div class="row inventory-item">
+            <div class="col-sm-3">
+                <!--TODO-->
+                <img />
+            </div>
+            <div class="col-sm-8 col-sm-offset-1">
+                <div class="row">
+                    <div class="col-sm-4">
+                        Body Style: @Model.BodyStyle.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        Interior: @Model.Interior.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        Sale Price: @Model.SalePrice.ToString("C", CultureInfo.CurrentCulture)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Trans: @Model.TransmissionType.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        Mileage: @Model.Mileage
+                    </div>
+                    <div class="col-sm-4">
+                        MSRP: @Model.MSRP.ToString("C", CultureInfo.CurrentCulture)
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4">
+                        Color: @Model.Color.DisplayName
+                    </div>
+                    <div class="col-sm-4">
+                        VIN #: @Model.VIN
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        Description: @Model.Description
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-sm-offset-9">
+                        <a class="a-button" href="/Home/Contact?VIN=@Model.VIN">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/Content/core.css"/>   
+}

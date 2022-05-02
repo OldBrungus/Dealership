@@ -1,0 +1,3 @@
+﻿CREATE PROCEDURE dbo.GetBodyStyles
+AS
+	SELECT * FROM BodyStyle

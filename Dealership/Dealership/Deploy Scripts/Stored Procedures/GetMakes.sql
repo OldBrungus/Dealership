@@ -1,0 +1,3 @@
+﻿CREATE PROCEDURE dbo.GetMakes
+AS
+	SELECT * FROM Make

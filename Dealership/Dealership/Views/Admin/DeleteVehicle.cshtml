@@ -1,0 +1,26 @@
+﻿@model Dealership.Models.EditVehicleViewModel
+
+@{
+    ViewBag.Title = "Delete Vehicle";
+}
+
+<h2>DeleteVehicle</h2>
+
+<h3>Are you sure you want to delete this vehcile?</h3>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <button type="submit" class="btn btn-danger" id="delete-button">Delete</button> |
+        @Html.ActionLink("Cancel", "EditVehicle", new { Model.ID }, new { @class = "btn btn-default" })
+    </div>
+    <input class="hidden" id="vehicle-id" value="@Model.ID" />
+}
+
+@section scripts
+{
+    <script src="~/Scripts/deleteVehicle.js"></script>
+}

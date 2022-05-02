@@ -1,0 +1,21 @@
+﻿.search-box.container {
+    border: solid 5px black;
+}
+
+#search-btn {
+    width: 12em;
+    border-bottom: solid black 3px;
+    border-right: solid black 3px;
+}
+
+.filters-row {
+    margin-bottom: 15px;
+}
+
+.buttons-row {
+    margin-bottom: 15px;
+}
+
+.inventory-item {
+    border: solid 5px black;
+}
