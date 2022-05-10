@@ -12,11 +12,9 @@ namespace Dealership.Providers
     public class AdminProvider : IAdminProvider
     {
         private IInventoryDAL _inventoryDAL;
-        private IUserDAL _userDAL;
-        public AdminProvider(IInventoryDAL inventoryDAL, IUserDAL userDAL)
+        public AdminProvider(IInventoryDAL inventoryDAL)
         {
             _inventoryDAL = inventoryDAL;
-            _userDAL = userDAL;
         }
 
         public Vehicle AddVehicle(AddVehicleViewModel vehicleVM)
@@ -97,56 +95,19 @@ namespace Dealership.Providers
             return imageByte;
         }
 
-        public AppUser AddUser(AddEditUserViewModel userVM, UserManager<AppUser> userManager)
-        {
-            var user = new AppUser();
-            user.UserName = userVM.Email;
-
-            userManager.Create(user, userVM.Password);
-            userManager.AddToRole(user.Id, userVM.RoleName);
-            _userDAL.AddUserToDb(userVM, user);
-
-            return user;
-        }
-
-        public AddEditUserViewModel GetUserByID(Guid userID)
-        {
-            AddEditUserViewModel userVM = _userDAL.GetUserByID(userID);
-            return userVM;
-        }
-
-        public AddEditUserViewModel EditUser(AddEditUserViewModel userVM, UserManager<AppUser> userManager, string password, string oldRole)
-        {
-            _userDAL.UpdateUser(userVM);
-
-            AppUser user = userManager.FindById(userVM.ID.ToString());
-            user.UserName = userVM.Email;
-
-            userManager.Update(user);
-            userManager.RemoveFromRole(user.Id, oldRole);
-            userManager.AddToRole(user.Id, userVM.RoleName);
-
-            if (!string.IsNullOrEmpty(userVM.Password))
-            {
-                userManager.ChangePassword(userVM.ID.ToString(), password, userVM.Password);
-            }
-
-            return userVM;
-        }
-
         public List<Make> GetMakes()
         {
             return  _inventoryDAL.GetMakes();
         }
 
-        public void AddModel(string modelName, int makeID)
+        public void AddModel(string modelName, int makeID, string userID)
         {
-            _inventoryDAL.AddModel(modelName, makeID);
+            _inventoryDAL.AddModel(modelName, makeID, userID);
         }
 
-        public void AddMake(Make make)
+        public void AddMake(Make make, string userID)
         {
-            _inventoryDAL.AddMake(make);
+            _inventoryDAL.AddMake(make, userID);
         }
         public List<Model> GetModels()
         {

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4BC4FD51-F224-4E3C-842C-29C012A4F09C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Dealership.Data</RootNamespace>
+    <AssemblyName>Dealership.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Data Access\ContactRequestDAL.cs" />
+    <Compile Include="Data Access\InventoryDAL.cs" />
+    <Compile Include="Data Access\SpecialsDAL.cs" />
+    <Compile Include="Helpers\SqlConnectionHelper.cs" />
+    <Compile Include="Helpers\ViewModelMappingHelper.cs" />
+    <Compile Include="Interfaces\IAdminProvider.cs" />
+    <Compile Include="Interfaces\IContactRequestDAL.cs" />
+    <Compile Include="Interfaces\IContactRequestProvider.cs" />
+    <Compile Include="Interfaces\IInventoryDAL.cs" />
+    <Compile Include="Interfaces\IInventoryProvider.cs" />
+    <Compile Include="Interfaces\ISpecialsDAL.cs" />
+    <Compile Include="Interfaces\ISpecialsProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dealership.Models\Dealership.Models.csproj">
+      <Project>{86b59214-875f-4ad9-baa3-463fd7e7f724}</Project>
+      <Name>Dealership.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Deploy Scripts\DatabaseCreation.sql" />
+    <Content Include="Deploy Scripts\SampleData.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\AddMake.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\AddModel.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\AddSpecial.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\AddUserToDb.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\AddVehicle.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\DeleteSpecial.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\DeleteVehicle.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\EditVehicle.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetBodyStyles.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetColors.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetFeaturedVehicles.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetInteriors.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetInventoryReportRows.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetMakes.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetModels.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetNewOrUsedVehicles.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetPurchaseTypes.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetSalesReport.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetSpecials.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetStates.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetTransmissions.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetUserByID.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetVehicleByID.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetVehicles.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\PurchaseVehicle.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\SubmitRequest.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\UpdateUser.sql" />
+    <Content Include="Deploy Scripts\TableCreation.sql" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

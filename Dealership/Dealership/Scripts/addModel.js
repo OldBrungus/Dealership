@@ -23,6 +23,14 @@ function buildTable(models) {
     <td>
         ${model.DisplayName}
     </td>
+
+    <td>
+        ${model.CreatedBy}
+    </td>
+
+    <td>
+        ${model.CreatedOn}
+    </td>
 </tr>`)
     })
 }

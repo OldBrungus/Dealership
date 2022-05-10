@@ -55,6 +55,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dealership.Data\Dealership.Data.csproj">
+      <Project>{4bc4fd51-f224-4e3c-842c-29c012a4f09c}</Project>
+      <Name>Dealership.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dealership.Models\Dealership.Models.csproj">
+      <Project>{86b59214-875f-4ad9-baa3-463fd7e7f724}</Project>
+      <Name>Dealership.Models</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dealership\Dealership.csproj">
       <Project>{830A0BA7-2918-4909-8150-CD7BBE2E1421}</Project>
       <Name>Dealership</Name>

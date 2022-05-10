@@ -185,57 +185,21 @@
     <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\ReportsController.cs" />
     <Compile Include="Controllers\SalesController.cs" />
-    <Compile Include="Data Access\ContactRequestDAL.cs" />
-    <Compile Include="Data Access\InventoryDAL.cs" />
-    <Compile Include="Data Access\UserDAL.cs" />
+    <Compile Include="EF\GuildCarsDbContext.cs" />
     <Compile Include="Factories\ContactFactory.cs" />
     <Compile Include="Factories\AdminFactory.cs" />
-    <Compile Include="Data Access\SpecialsDAL.cs" />
     <Compile Include="Factories\InventoryFactory.cs" />
     <Compile Include="Factories\SpecialsFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\SqlConnectionHelper.cs" />
-    <Compile Include="Helpers\ViewModelMappingHelper.cs" />
-    <Compile Include="Interfaces\IUserDAL.cs" />
-    <Compile Include="Interfaces\IContactRequestDAL.cs" />
-    <Compile Include="Interfaces\IAdminProvider.cs" />
-    <Compile Include="Interfaces\IContactRequestProvider.cs" />
-    <Compile Include="Interfaces\IInventoryDAL.cs" />
-    <Compile Include="Interfaces\IInventoryProvider.cs" />
-    <Compile Include="Interfaces\ISpecialsDAL.cs" />
-    <Compile Include="Interfaces\ISpecialsProvider.cs" />
     <Compile Include="Migrations\202204151753472_init.cs" />
     <Compile Include="Migrations\202204151753472_init.Designer.cs">
       <DependentUpon>202204151753472_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AddEditUserViewModel.cs" />
-    <Compile Include="Models\AddModelViewModel.cs" />
-    <Compile Include="Models\AddVehicleViewModel.cs" />
-    <Compile Include="Models\BodyStyle.cs" />
-    <Compile Include="Models\Color.cs" />
-    <Compile Include="Models\AppRole.cs" />
-    <Compile Include="Models\EditVehicleViewModel.cs" />
-    <Compile Include="Models\ContactRequest.cs" />
-    <Compile Include="Models\HomeViewModel.cs" />
-    <Compile Include="Models\Interior.cs" />
-    <Compile Include="Models\InventoryReport.cs" />
-    <Compile Include="Models\Make.cs" />
-    <Compile Include="Models\AppUser.cs" />
-    <Compile Include="Models\GuildCarsDbContext.cs" />
-    <Compile Include="Models\LoginViewModel.cs" />
-    <Compile Include="Models\Model.cs" />
-    <Compile Include="Models\PurchaseInfo.cs" />
-    <Compile Include="Models\PurchaseType.cs" />
-    <Compile Include="Models\PurchaseViewModel.cs" />
-    <Compile Include="Models\Sale.cs" />
-    <Compile Include="Models\SalesReportViewModel.cs" />
-    <Compile Include="Models\Special.cs" />
-    <Compile Include="Models\State.cs" />
-    <Compile Include="Models\TransmissionType.cs" />
-    <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="EF\AppRole.cs" />
+    <Compile Include="EF\AppUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ContactRequestProvider.cs" />
     <Compile Include="Providers\AdminProvider.cs" />
@@ -256,36 +220,6 @@
     <Content Include="Content\inventorySearch.css" />
     <Content Include="Content\salesList.css" />
     <Content Include="Content\specials.css" />
-    <Content Include="Deploy Scripts\DatabaseCreation.sql" />
-    <Content Include="Deploy Scripts\SampleData.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\AddModel.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\AddMake.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\AddUserToDb.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetFeaturedVehicles.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetPurchaseTypes.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetSalesReport.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetStates.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetUserByID.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetInventoryReportRows.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\AddSpecial.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\DeleteSpecial.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetVehicles.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\PurchaseVehicle.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\SubmitRequest.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\AddVehicle.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\DeleteVehicle.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\EditVehicle.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetBodyStyles.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetSpecials.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetVehicleByID.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetColors.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetInteriors.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetMakes.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetModels.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetTransmissions.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\UpdateUser.sql" />
-    <Content Include="Deploy Scripts\TableCreation.sql" />
-    <Content Include="Deploy Scripts\Stored Procedures\GetNewOrUsedVehicles.sql" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -389,8 +323,12 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dealership.Data\Dealership.Data.csproj">
+      <Project>{4bc4fd51-f224-4e3c-842c-29c012a4f09c}</Project>
+      <Name>Dealership.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dealership.Models\Dealership.Models.csproj">
-      <Project>{a530a90f-d03f-46cf-9c1e-e5c2987b79c9}</Project>
+      <Project>{86b59214-875f-4ad9-baa3-463fd7e7f724}</Project>
       <Name>Dealership.Models</Name>
     </ProjectReference>
   </ItemGroup>

@@ -12,12 +12,7 @@ namespace Dealership.Factories
     {
         public static IAdminProvider CreateAdminProvider()
         {
-            return new AdminProvider(CreateInventoryDAL(), CreateUserDAL());
-        }
-
-        private static IUserDAL CreateUserDAL()
-        {
-            return new UserDAL();
+            return new AdminProvider(CreateInventoryDAL());
         }
 
         public static IInventoryDAL CreateInventoryDAL()

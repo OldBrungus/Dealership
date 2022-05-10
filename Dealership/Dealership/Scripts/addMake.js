@@ -19,6 +19,12 @@ function fillTable(makes) {
                 <td>
                     ${make.DisplayName}
                 </td>
+                <td>
+                    ${make.CreatedOn}
+                </td>
+                <td>
+                    ${make.CreatedBy}
+                </td>
             </tr>`)
     })
 }

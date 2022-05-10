@@ -131,42 +131,6 @@ namespace Dealership.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddUser()
-        {
-            AddEditUserViewModel userVM = new AddEditUserViewModel();
-            return View(userVM);
-        }
-        
-        [HttpPost]
-        public void AddUser(AddEditUserViewModel userVM)
-        {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<UserManager<AppUser>>();
-
-            AppUser user = _adminProvider.AddUser(userVM, userManager);
-
-            Response.Redirect($"/Admin/EditUser?userID={user.Id.ToString()}");
-        }
-
-        [HttpGet]
-        public ActionResult EditUser(Guid userID)
-        {
-            AddEditUserViewModel userVM = _adminProvider.GetUserByID(userID);
-
-            return View(userVM);
-        }
-
-        [HttpPost]
-        public void EditUser(AddEditUserViewModel userVM)
-        {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<UserManager<AppUser>>();
-            string password = userVM.Password;
-            string oldRole = userVM.RoleName;
-            _adminProvider.EditUser(userVM, userManager, password, oldRole);
-
-            Response.Redirect("/Admin/Vehicles");
-        }
-
-        [HttpGet]
         public ActionResult AddModel()
         {
             AddModelViewModel addModelVM = new AddModelViewModel();
@@ -184,7 +148,8 @@ namespace Dealership.Controllers
         [HttpPost]
         public void AddModel(AddModelViewModel addModelVM)
         {
-            _adminProvider.AddModel(addModelVM.ModelName, addModelVM.MakeID);
+            string userID = User.Identity.GetUserId();
+            _adminProvider.AddModel(addModelVM.ModelName, addModelVM.MakeID, userID);
             Response.Redirect("/Admin/AddModel");
         }
 
@@ -204,7 +169,8 @@ namespace Dealership.Controllers
         [HttpPost]
         public void AddMake(Make make)
         {
-            _adminProvider.AddMake(make);
+            string userID = User.Identity.GetUserId();
+            _adminProvider.AddMake(make, userID);
 
             Response.Redirect("/Admin/AddMake");
         }
