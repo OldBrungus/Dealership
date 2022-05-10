@@ -388,6 +388,12 @@
       <DependentUpon>202204151753472_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dealership.Models\Dealership.Models.csproj">
+      <Project>{a530a90f-d03f-46cf-9c1e-e5c2987b79c9}</Project>
+      <Name>Dealership.Models</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

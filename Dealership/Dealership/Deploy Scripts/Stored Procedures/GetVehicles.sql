@@ -40,9 +40,9 @@ AS
 		OR Make LIKE @searchTerm
 		OR Model LIKE @searchTerm
 		OR [Year] LIKE @searchTerm)
-	AND CAST([Year] AS INT) > @minYear
+	AND CAST([Year] AS INT) >= @minYear
 	AND (@maxYear IS NULL
-		OR CAST([Year] AS INT) < @maxYear)
-	AND SalePrice > @minPrice
+		OR CAST([Year] AS INT) <= @maxYear)
+	AND SalePrice >= @minPrice
 	AND (@maxPrice IS NULL
-		OR SalePrice < @maxPrice)
+		OR SalePrice <= @maxPrice)

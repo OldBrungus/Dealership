@@ -41,18 +41,24 @@ function createRow(vehicles) {
     vehicles.forEach(function (vehicle) {
         $('.inventory-list').append(`
     <div class="row inventory-item">
-        <div class="col-sm-3">
-            <img style="max-width: 100%" src="data:image/*;base64,${vehicle.PictureBase64String}" />
+        <div class="col-md-6">
+            <div class="row">
+                ${vehicle.Year} ${vehicle.Make.DisplayName} ${vehicle.Model.DisplayName}
+            </div>
         </div>
+
         <div class="col-sm-8 col-sm-offset-1">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-3">
+                    <img style="max-width: 100%" src="data:image/*;base64,${vehicle.PictureBase64String}" />
+                </div>
+                <div class="col-sm-3">
                     Body Style: ${vehicle.BodyStyle.DisplayName}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     Interior: ${vehicle.Interior.DisplayName}
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-3">
                     Sale Price: ${formatter.format(vehicle.SalePrice)}
                 </div>
             </div>
@@ -75,7 +81,7 @@ function createRow(vehicles) {
                     VIN #: ${vehicle.VIN}
                 </div>
                 <div class="col-sm-4">
-                    <a href="/Admin/EditVehicle?id=${vehicle.ID}">Edit</a>
+                    <a href="/Admin/EditVehicle/${vehicle.ID}">Edit</a>
                 </div>
             </div>
         </div>

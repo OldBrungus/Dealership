@@ -441,6 +441,7 @@ namespace Dealership.Data_Access
             cmd.Parameters.AddWithValue("@msrp", vehicleVM.MSRP);
             cmd.Parameters.AddWithValue("@salePrice", vehicleVM.SalePrice);
             cmd.Parameters.AddWithValue("@description", vehicleVM.Description);
+            cmd.Parameters.AddWithValue("@isFeatured", vehicleVM.IsFeatured);
 
             if (vehicleVM.Picture != null)
             {

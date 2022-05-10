@@ -26,7 +26,7 @@ namespace Dealership.Migrations
 
                 var user = new AppUser()
                 {
-                    UserName = "admin"
+                    UserName = "admin",
                 };
 
                 userMgr.Create(user, "Testing123!");

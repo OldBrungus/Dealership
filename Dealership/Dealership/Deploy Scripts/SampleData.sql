@@ -61,7 +61,7 @@ ModelID)
 VALUES 
 (1, '12345678901234567', '1999', 1, 1, 1, 1, 5000, 6000, 0, '*shrugs* It runs', 150000, 1, 1),
 (1, '1a2s3d4f5q6w7e8w7', '2000', 1, 2, 2, 1, 6000, 7000, 0, 'Take it or leave it', 110000, 1, 1),
-(1, 'x1s1d22d2s5gf5v2z', '1987', 1, 1, 5, 1, 17000, 18000, 0, 'The ultimate drift machine', 200000, 2, 2)
+(1, 'x1s1d22d2s5gf5v2z', '1987', 1, 1, 5, 1, 17000, 18000, 0, 'The ultimate drift machine', 200000, 2, 2),
 (1, '8djfh47gfj3jf8cj3', '2022', 1, 1, 2, 2, 45000, 46000, 1, 'Ooh rally car, very nice', 128, 3, 3)
 
 -- End Sample Vehicles --
@@ -131,3 +131,11 @@ VALUES
 ('Wyoming', 'WY')
 
 -- End States --
+
+-- Begin Specials --
+
+INSERT INTO Special
+VALUES
+('Hot Deal', '$5000 extra BONUS CASH on any new purchase'),
+('Sweet Savings', 'DOUBLE YOUR TRADE IN VALUE!!!'),
+('An Offer You Cant Refuse', 'Free gun with every purchase')

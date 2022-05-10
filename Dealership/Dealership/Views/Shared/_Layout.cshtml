@@ -30,6 +30,9 @@
                     @if (User.IsInRole("admin"))
                     {
                         <li>@Html.ActionLink("Specials", "Specials", "Admin")</li>
+                        <li>@Html.ActionLink("Makes", "AddMake", "Admin")</li>
+                        <li>@Html.ActionLink("Models", "AddModel", "Admin")</li>
+
                     }
                     else
                     {

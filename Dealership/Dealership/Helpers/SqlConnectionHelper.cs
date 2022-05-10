@@ -10,7 +10,7 @@ namespace Dealership.Helpers
     {
         public static SqlConnection GetConnection()
         {
-            return new SqlConnection("server=MIT8896NOTE;database=GuildCars;Integrated Security=True");
+            return new SqlConnection("server=localhost;database=GuildCars;Integrated Security=True");
         }
     }
 }
