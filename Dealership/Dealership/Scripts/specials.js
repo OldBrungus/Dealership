@@ -26,7 +26,7 @@ function CreateSpecialsRows(specials) {
                         <h3>${special.SpecialTitle}</h3>
                     </div>
                     <div class="col-lg-1 col-lg-offset-2 specials-button">
-                        <a class="a-button red" href="/Admin/DeleteSpecial?specialID=${special.SpecialID}">Delete</a>
+                        <a class="btn btn-danger" href="/Admin/DeleteSpecial?specialID=${special.SpecialID}">Delete</a>
                     </div>
                 </div>
                 <div class="row">

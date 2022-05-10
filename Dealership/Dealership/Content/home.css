@@ -1,0 +1,21 @@
+﻿#specialSlide{
+    max-height: 200px;
+}
+
+.item{
+    max-height: 200px;
+    cursor: pointer;
+}
+
+#featured-picture{
+    max-height: 30px;
+    max-width: 30px;
+}
+
+#vehicleBox{
+    border: solid black 3px;
+    margin: 3px;
+    text-align: center;
+    max-height: 150px;
+    max-width: 200px;
+}

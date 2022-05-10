@@ -25,7 +25,9 @@ namespace Dealership.Interfaces
         void AddModel(string modelName, int makeID);
         void AddMake(Make make);
         List<State> GetStates();
+        SalesReportViewModel GetSalesReport(DateTime? startDate, DateTime? endDate);
         List<PurchaseType> GetPurchaseTypes();
         void Purchase(PurchaseInfo purchase);
+        List<Vehicle> GetFeaturedVehicles();
     }
 }

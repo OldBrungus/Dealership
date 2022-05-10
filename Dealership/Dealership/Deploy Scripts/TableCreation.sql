@@ -23,6 +23,13 @@ CREATE TABLE dbo.Interior
 	Interior NVARCHAR(255) NOT NULL
 )
 
+CREATE TABLE dbo.Make
+(
+	MakeID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Make NVARCHAR(255) NOT NULL
+)
+
+
 CREATE TABLE dbo.Model
 (
 	ModelID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -30,11 +37,6 @@ CREATE TABLE dbo.Model
 	MakeID INT FOREIGN KEY (MakeID) REFERENCES dbo.Make (MakeID)
 )
 
-CREATE TABLE dbo.Model
-(
-	ModelID INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Model NVARCHAR(255) NOT NULL
-)
 
 -- End Resource Tables --
 
@@ -63,7 +65,8 @@ CREATE TABLE dbo.Vehicle
 		FOREIGN KEY (MakeID) REFERENCES dbo.Make (MakeID),
 	ModelID INT NOT NULL,
 		FOREIGN KEY (ModelID) REFERENCES dbo.Model (ModelID),
-	Sold BIT NOT NULL DEFAULT (0)
+	Sold BIT NOT NULL DEFAULT (0),
+	SaleDate DATETIME NULL
 )
 
 -- End Vehicle --

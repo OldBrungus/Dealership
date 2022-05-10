@@ -14,6 +14,8 @@ namespace Dealership.Interfaces
         List<Vehicle> GetVehicles(string searchTerm, int? minYear, int? maxYear, int? minPrice, int? maxPrice);
         List<InventoryReport> GetInventoryReportRows();
         PurchaseViewModel GetPurchaseResources(int ID);
+        SalesReportViewModel GetSalesReport(DateTime? startDate, DateTime? endDate);
         void Purchase(PurchaseInfo purchase);
+        List<Vehicle> GetFeaturedVehicles();
     }
 }

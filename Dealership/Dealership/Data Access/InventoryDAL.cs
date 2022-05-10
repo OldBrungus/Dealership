@@ -74,6 +74,7 @@ namespace Dealership.Data_Access
                         vehicle.MSRP = ViewModelMappingHelper.Parse<int>(reader, "MSRP");
                         vehicle.New = ViewModelMappingHelper.Parse<bool>(reader, "New");
                         vehicle.Picture = ViewModelMappingHelper.Parse<byte[]>(reader, "Picture");
+                        vehicle.PictureBase64String = Convert.ToBase64String(vehicle.Picture);
                         vehicle.SalePrice = ViewModelMappingHelper.Parse<int>(reader, "SalePrice");
                         vehicle.TransmissionType.TransmissionTypeID = ViewModelMappingHelper.Parse<int>(reader, "TransmissionTypeID");
                         vehicle.TransmissionType.DisplayName = ViewModelMappingHelper.Parse<string>(reader, "TransmissionType");
@@ -201,6 +202,7 @@ namespace Dealership.Data_Access
                         vehicle.MSRP = ViewModelMappingHelper.Parse<int>(reader, "MSRP");
                         vehicle.New = ViewModelMappingHelper.Parse<bool>(reader, "New");
                         vehicle.Picture = ViewModelMappingHelper.Parse<byte[]>(reader, "Picture");
+                        vehicle.PictureBase64String = Convert.ToBase64String(vehicle.Picture);
                         vehicle.SalePrice = ViewModelMappingHelper.Parse<int>(reader, "SalePrice");
                         vehicle.TransmissionType.TransmissionTypeID = ViewModelMappingHelper.Parse<int>(reader, "TransmissionTypeID");
                         vehicle.TransmissionType.DisplayName = ViewModelMappingHelper.Parse<string>(reader, "TransmissionType");
@@ -439,7 +441,12 @@ namespace Dealership.Data_Access
             cmd.Parameters.AddWithValue("@msrp", vehicleVM.MSRP);
             cmd.Parameters.AddWithValue("@salePrice", vehicleVM.SalePrice);
             cmd.Parameters.AddWithValue("@description", vehicleVM.Description);
-            cmd.Parameters.AddWithValue("@picture", vehicleVM.Picture);
+
+            if (vehicleVM.Picture != null)
+            {
+                cmd.Parameters.AddWithValue("@picture", vehicleVM.Picture);
+            }
+            
             cmd.Parameters.AddWithValue("@isFeatured", vehicleVM.IsFeatured);
 
             using(cmd.Connection = SqlConnectionHelper.GetConnection())
@@ -586,17 +593,17 @@ namespace Dealership.Data_Access
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "dbo.PurchaseVehicle";
-            cmd.Parameters.AddWithValue("@vehicleID", purchase.ID);
+            cmd.Parameters.AddWithValue("@vehicleID", purchase.VehicleID);
             cmd.Parameters.AddWithValue("@name", purchase.Name);
             cmd.Parameters.AddWithValue("@phone", purchase.Phone);
             cmd.Parameters.AddWithValue("@email", purchase.Email);
             cmd.Parameters.AddWithValue("@street1", purchase.Street1);
             cmd.Parameters.AddWithValue("@street2", purchase.Street2);
             cmd.Parameters.AddWithValue("@city", purchase.City);
-            cmd.Parameters.AddWithValue("@state", purchase.State);
+            cmd.Parameters.AddWithValue("@state", purchase.StateID);
             cmd.Parameters.AddWithValue("@zip", purchase.Zip);
             cmd.Parameters.AddWithValue("@purchasePrice", purchase.PurchasePrice);
-            cmd.Parameters.AddWithValue("@purchaseType", purchase.PurchaseType);
+            cmd.Parameters.AddWithValue("@purchaseType", purchase.PurchaseTypeID);
 
             using (cmd.Connection = SqlConnectionHelper.GetConnection())
             {
@@ -604,6 +611,65 @@ namespace Dealership.Data_Access
 
                 cmd.ExecuteNonQuery();
             }
+        }
+
+        public SalesReportViewModel GetSalesReport(DateTime? startDate, DateTime? endDate)
+        {
+            SalesReportViewModel model = new SalesReportViewModel();
+
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dbo.GetSalesReport";
+            cmd.Parameters.AddWithValue("@startDate", startDate);
+            cmd.Parameters.AddWithValue("@endDate", endDate);
+
+            using (cmd.Connection = SqlConnectionHelper.GetConnection())
+            {
+                cmd.Connection.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        model.TotalSalesCount = ViewModelMappingHelper.Parse<int>(reader, "TotalSalesCount");
+                        model.TotalSalesAmount = ViewModelMappingHelper.Parse<int>(reader, "TotalSalesAmount").ToString("C");
+                    }
+                }
+            }
+            return model;
+        }
+
+        public List<Vehicle> GetFeaturedVehicles()
+        {
+            List<Vehicle> featuredVehicles = new List<Vehicle>();
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "dbo.GetFeaturedVehicles";
+
+            using (cmd.Connection = SqlConnectionHelper.GetConnection())
+            {
+                cmd.Connection.Open();
+
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        Vehicle vehicle = new Vehicle();
+                        vehicle.ID = ViewModelMappingHelper.Parse<int>(reader, "ID");
+                        vehicle.Year = ViewModelMappingHelper.Parse<string>(reader, "Year");
+                        vehicle.Make = new Make();
+                        vehicle.Make.DisplayName = ViewModelMappingHelper.Parse<string>(reader, "Make");
+                        vehicle.Model = new Model();
+                        vehicle.Model.DisplayName = ViewModelMappingHelper.Parse<string>(reader, "Model");
+                        vehicle.SalePrice = ViewModelMappingHelper.Parse<int>(reader, "SalePrice");
+                        vehicle.Picture = ViewModelMappingHelper.Parse<byte[]>(reader, "Picture");
+
+                        featuredVehicles.Add(vehicle);
+                    }
+                }
+            }
+
+            return featuredVehicles;
         }
     }
 }

@@ -9,6 +9,7 @@ using Dealership.Models;
 
 namespace Dealership.Controllers
 {
+    [AllowAnonymous]
     public class InventoryController : Controller
     {
         private IInventoryProvider _inventoryProvider = InventoryFactory.CreateInventoryProvider();

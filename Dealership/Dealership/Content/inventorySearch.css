@@ -18,4 +18,5 @@
 
 .inventory-item {
     border: solid 5px black;
+    margin-bottom: 3px;
 }

@@ -12,11 +12,10 @@ using System.Web.Mvc;
 namespace Dealership.Controllers
 {
     [Authorize(Roles = "admin")]
-    //[ValidateAntiForgeryToken]
     public class AdminController : Controller
     {
         private IAdminProvider _adminProvider = AdminFactory.CreateAdminProvider();
-        private ISpecialsProvider _specialsProvider = SpecialsFactory.GetSpecialsProvider(); //todo reconcile naming conventions
+        private ISpecialsProvider _specialsProvider = SpecialsFactory.GetSpecialsProvider();
         private IInventoryProvider _inventoryProvider = InventoryFactory.CreateInventoryProvider();
 
         public ActionResult Index()
@@ -46,10 +45,20 @@ namespace Dealership.Controllers
         }
 
         [HttpPost]
-        public void AddVehicle(AddVehicleViewModel vehicleVM)
+        public ActionResult AddVehicle(AddVehicleViewModel vehicleVM)
         {
-            Vehicle vehicle = _adminProvider.AddVehicle(vehicleVM);
-            Response.Redirect($"/Admin/EditVehicle/{vehicle.ID.ToString()}");
+            if (ModelState.IsValid)
+            {
+                Vehicle vehicle = _adminProvider.AddVehicle(vehicleVM);
+                Response.Redirect($"/Admin/EditVehicle?id={vehicle.ID}");
+
+                return Json(true);
+            }
+            else
+            {
+                vehicleVM = _adminProvider.GetAddVehicleResources();
+                return View(vehicleVM);
+            }
         }
 
         [HttpGet]
@@ -92,10 +101,19 @@ namespace Dealership.Controllers
         }
 
         [HttpPost]
-        public void EditVehicle(EditVehicleViewModel vehicleVM)
+        public ActionResult EditVehicle(EditVehicleViewModel vehicleVM)
         {
-            _adminProvider.EditVehicle(vehicleVM);
-            Response.Redirect($"/Admin/Vehicles");
+            if(ModelState.IsValid)
+            {
+                _adminProvider.EditVehicle(vehicleVM);
+                var vehicles = new List<Vehicle>();
+                return View("Vehicles", vehicles);
+            }
+            else
+            {
+                vehicleVM = _adminProvider.GetEditVehicleResources(vehicleVM.ID);
+                return View(vehicleVM);
+            }
         }
 
         [HttpGet]

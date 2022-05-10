@@ -13,17 +13,15 @@
     var imgSrc = String.Format("data:image/*;base64,{0}", base64);
 }
 
-<h2>Edit Vehicle</h2>
-
 @using (Html.BeginForm("EditVehicle", "Admin", FormMethod.Post,
     new { enctype = "multipart/formdata" }))
 {
     @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
 
     <div class="form-horizontal">
         <h4>Edit Vehicle</h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group row">
             <div class="col-md-6">
@@ -77,8 +75,7 @@
 
         <div class="form-group row">
             <div class="col-md-6">
-                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control", @type="number" } })
             </div>
 
             <div class="col-md-6">
@@ -118,13 +115,11 @@
 
         <div class="form-group row">
             <div class="col-md-6">
-                @Html.EditorFor(model => model.Mileage, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Mileage, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Mileage, new { htmlAttributes = new { @class = "form-control", @type="number" } })
             </div>
 
             <div class="col-md-6">
                 @Html.EditorFor(model => model.VIN, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.VIN, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -140,13 +135,11 @@
 
         <div class="form-group row">
             <div class="col-md-6">
-                @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.SalePrice, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.SalePrice, new { htmlAttributes = new { @class = "form-control", @type="number" } })
             </div>
 
             <div class="col-md-6">
-                @Html.EditorFor(model => model.MSRP, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MSRP, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.MSRP, new { htmlAttributes = new { @class = "form-control", @type="number"} })
             </div>
         </div>
 
@@ -159,7 +152,6 @@
         <div class="form-group row">
             <div class="col">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control descriptionBox" } })
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -201,9 +193,14 @@ new { type = "file", @class = "form-control" })
             </div>
         </div>
     </div>
-    <input class="hidden" id="vehicle-id" value="@Model.ID" />
+    <input class="hidden" id="vehicle-id" name="ID" value="@Model.ID" />
+    <input class="hidden" name="PictureBytes" value="@base64" />
 }
 
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section Scripts {
+    <script src="~/Scripts/addEditVehicle.js"></script>   
+}

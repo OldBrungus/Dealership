@@ -1,10 +1,10 @@
 ﻿CREATE PROCEDURE dbo.PurchaseVehicle
 	@vehicleID INT,
 	@name NVARCHAR(255),
-	@phone NVARCHAR(255),
-	@email NVARCHAR(255),
+	@phone NVARCHAR(255) = NULL,
+	@email NVARCHAR(255) = NULL,
 	@street1 NVARCHAR(255),
-	@street2 NVARCHAR(255),
+	@street2 NVARCHAR(255) = NULL,
 	@city NVARCHAR(255),
 	@state NVARCHAR(255),
 	@zip NVARCHAR(255),

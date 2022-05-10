@@ -29,16 +29,35 @@ namespace Dealership.Controllers
         }
 
         [HttpGet]
-        public ActionResult Purchase(int ID)
+        public ActionResult GetPurchaseInfoResources(int vehicleID)
         {
-            PurchaseViewModel purchaseVM = _inventoryProvider.GetPurchaseResources(ID);
-            return View(purchaseVM);
+            PurchaseViewModel purchaseViewModel = new PurchaseViewModel();
+            purchaseViewModel = _inventoryProvider.GetPurchaseResources(vehicleID);
+            return Json(purchaseViewModel, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpGet]
+        public ActionResult Purchase(int vehicleID)
+        {
+            PurchaseInfo purchase = new PurchaseInfo();
+            purchase.VehicleID = vehicleID;
+            return View(purchase);
         }
 
         [HttpPost]
-        public void Purchase(PurchaseInfo purchase)
+        public ActionResult Purchase(PurchaseInfo purchase)
         {
-            _inventoryProvider.Purchase(purchase);
+            if (ModelState.IsValid)
+            {
+                _inventoryProvider.Purchase(purchase);
+                List<Sale> sales = new List<Sale>();
+                return View("Index", sales);
+            }
+            else
+            {
+                return View(purchase);
+            }
+           
         }
     }
 }

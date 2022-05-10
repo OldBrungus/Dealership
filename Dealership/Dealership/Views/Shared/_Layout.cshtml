@@ -27,13 +27,29 @@
                     <li style="padding-top: 15px; padding-bottom: 15px;"> | </li>
                     <li>@Html.ActionLink("Used Inventory", "Used", "Inventory")</li>
                     <li style="padding-top: 15px; padding-bottom: 15px;"> | </li>
-                    <li>@Html.ActionLink("Specials", "Specials", "Home")</li>
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Specials", "Specials", "Admin")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Specials", "Specials", "Home")</li>
+                    }
                     <li style="padding-top: 15px; padding-bottom: 15px;"> | </li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     <li style="padding-top: 15px; padding-bottom: 15px;"> | </li>
-                    <li>@Html.ActionLink("Sales", "Index", "Sales")</li>
+                    @if (User.IsInRole("sales"))
+                    {
+                        <li>@Html.ActionLink("Sales", "Index", "Sales")</li>
+                    }
+                    @if (User.IsInRole("admin"))
+                    {
+                        <li>@Html.ActionLink("Sales", "Index", "Sales")</li>
+                        <li>@Html.ActionLink("Admin", "Vehicles", "Admin")</li>
+                        <li>@Html.ActionLink("Reports", "List", "Reports")</li>
+                    }
+
                 </ul>
-                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>

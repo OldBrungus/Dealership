@@ -9,7 +9,7 @@ $(document).ready(function () {
         search(true);
     });
     $('#used-search-btn').click(function () {
-        search(true);
+        search(false);
     });
 });
 
@@ -24,7 +24,7 @@ function search(isNew) {
     var maxPrice = $('#maxPrice').val();
     var minYear = $('#minYear').val();
     var maxYear = $('#maxYear').val();
-    var searchTerm = ''; //todo
+    var searchTerm = $('#searchBox').val();
 
     $.ajax({
         url: url,
@@ -43,11 +43,13 @@ function search(isNew) {
 }
 
 function createRow(vehicles) {
+    $('.inventory-list').empty();
+
     vehicles.forEach(function (vehicle) {
         $('.inventory-list').append(`
     <div class="row inventory-item">
         <div class="col-sm-3">
-            <img />
+            <img style="max-width: 100%" src="data:image/*;base64,${vehicle.PictureBase64String}" />
         </div>
         <div class="col-sm-8 col-sm-offset-1">
             <div class="row">

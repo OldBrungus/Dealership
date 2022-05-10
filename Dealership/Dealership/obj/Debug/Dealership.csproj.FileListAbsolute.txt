@@ -77,6 +77,8 @@ C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.WebPages.Deployment.
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.WebPages.dll
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.WebPages.Razor.dll
 C:\repos\dealership-ed\Dealership\Dealership\bin\WebGrease.dll
+C:\repos\dealership-ed\Dealership\Dealership\bin\EntityFramework.xml
+C:\repos\dealership-ed\Dealership\Dealership\bin\EntityFramework.SqlServer.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.Helpers.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.Mvc.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.Optimization.xml
@@ -89,8 +91,6 @@ C:\repos\dealership-ed\Dealership\Dealership\bin\Antlr3.Runtime.pdb
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Net.Http.Formatting.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.Http.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\System.Web.Http.WebHost.xml
-C:\repos\dealership-ed\Dealership\Dealership\bin\EntityFramework.xml
-C:\repos\dealership-ed\Dealership\Dealership\bin\EntityFramework.SqlServer.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\Microsoft.AspNet.Identity.Core.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\Microsoft.AspNet.Identity.Owin.xml
 C:\repos\dealership-ed\Dealership\Dealership\bin\Microsoft.AspNet.Identity.EntityFramework.xml

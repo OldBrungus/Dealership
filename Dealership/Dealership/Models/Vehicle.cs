@@ -23,6 +23,7 @@ namespace Dealership.Models
         public string Description { get; set; }
         public int Mileage { get; set; }
         public byte[] Picture { get; set; }
+        public string PictureBase64String { get; set; }
         public Make Make { get; set; }
         public Model Model { get; set; }
     }

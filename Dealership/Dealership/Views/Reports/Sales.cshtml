@@ -1,0 +1,49 @@
+﻿@model Dealership.Models.SalesReportViewModel
+
+@{
+    ViewBag.Title = "Sales";
+}
+
+<h2>Sales Report</h2>
+
+<div class="search-box container">
+    <h3>Filters</h3>
+    <div class="row filters-row">
+        <div class="col-sm-12">
+            From Date <input type="date" id="startDate" />
+            To Date <input type="date"id="endDate" />
+        </div>
+    </div>
+    <div class="row buttons-row">
+        <div class="col-xs-6 col-xs-offset-5">
+            <button id="search-btn">Search</button>
+        </div>
+    </div>
+</div>
+
+<div>
+    <h4>Search Results</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Total Sales Amount
+        </dt>
+
+        <dd id="totalSalesAmount">
+            @Html.DisplayFor(model => model.TotalSalesAmount)
+        </dd>
+
+        <dt>
+            Total Sales Count
+        </dt>
+
+        <dd id="totalSalesCount">
+            @Html.DisplayFor(model => model.TotalSalesCount)
+        </dd>
+
+    </dl>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/salesReport.js"></script>    
+}

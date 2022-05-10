@@ -1,12 +1,7 @@
 ﻿@using System.Globalization;
-@model Dealership.Models.PurchaseViewModel
-
+@model Dealership.Models.PurchaseInfo
 @{
     ViewBag.Title = "Purchase";
-    var base64 = Convert.ToBase64String(Model.Vehicle.Picture);
-    var imgSrc = String.Format("data:image/*;base64,{0}", base64);
-    SelectList states = new SelectList(Model.States, "ID", "StateAbbreviation");
-    SelectList purchaseTypes = new SelectList(Model.PurchaseTypes, "ID", "PurchaseTypeName");
 }
 
 <h2>Purchase</h2>
@@ -15,48 +10,48 @@
     <hr />
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                @Model.Vehicle.Year @Model.Vehicle.Make.DisplayName @Model.Vehicle.Model.DisplayName
+            <div class="col-sm-4" id="vehicleTitle">
+                
             </div>
         </div>
         <div class="row inventory-item">
             <div class="col-sm-3">
-                <img src="@imgSrc" />
+                <img id="vehiclePicture" />
             </div>
             <div class="col-sm-8 col-sm-offset-1">
                 <div class="row">
-                    <div class="col-sm-4">
-                        Body Style: @Model.Vehicle.BodyStyle.DisplayName
+                    <div class="col-sm-4" id="bodyStyle">
+
                     </div>
-                    <div class="col-sm-4">
-                        Interior: @Model.Vehicle.Interior.DisplayName
+                    <div class="col-sm-4" id="interior">
+
                     </div>
-                    <div class="col-sm-4">
-                        Sale Price: @Model.Vehicle.SalePrice.ToString("C", CultureInfo.CurrentCulture)
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4">
-                        Trans: @Model.Vehicle.TransmissionType.DisplayName
-                    </div>
-                    <div class="col-sm-4">
-                        Mileage: @Model.Vehicle.Mileage
-                    </div>
-                    <div class="col-sm-4">
-                        MSRP: @Model.Vehicle.MSRP.ToString("C", CultureInfo.CurrentCulture)
+                    <div class="col-sm-4" id="salePrice">
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">
-                        Color: @Model.Vehicle.Color.DisplayName
+                    <div class="col-sm-4" id="transmissionType">
+
                     </div>
-                    <div class="col-sm-4">
-                        VIN #: @Model.Vehicle.VIN
+                    <div class="col-sm-4" id="mileage">
+
+                    </div>
+                    <div class="col-sm-4" id="msrp">
+
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12">
-                        Description: @Model.Vehicle.Description
+                    <div class="col-sm-4" id="color">
+
+                    </div>
+                    <div class="col-sm-4" id="vin">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12" id="description">
+
                     </div>
                 </div>
             </div>
@@ -64,14 +59,15 @@
     </div>
 </div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md">
-            <h2>Sales Information</h2>
-        </div>
-    </div>
+@using (Html.BeginForm("Purchase", "Sales", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
 
-    <div class="row">
+<div class="form-horizontal">
+    <h2>Sales Information</h2>
+
+    <div class="form-group row">
         <div class="col-md-6">
             <label>Name</label>
         </div>
@@ -81,29 +77,29 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-md-6">
-            <input type="text" id="name" />
+            @Html.EditorFor(model => model.Name)
         </div>
 
         <div class="col-md-6">
-            <input type="text" id="phone"/>
+            @Html.EditorFor(model => model.Phone)
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-md-6">
             <label>Email</label>
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-md-6">
-            <input type="text" id="email" />
+            @Html.EditorFor(model => model.Email)
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-gropu row">
         <div class="col-md-6">
             <label>Street 1</label>
         </div>
@@ -113,17 +109,17 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-md-6">
-            <input type="text" id="street1" />
+            @Html.EditorFor(model => model.Street1)
         </div>
 
         <div class="col-md-6">
-            <input type="text" id="street2" />
+            @Html.EditorFor(model => model.Street2)
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-md-6">
             <label>City</label>
         </div>
@@ -133,19 +129,33 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-md-6">
-            <input type="text" id="city" />
+            @Html.EditorFor(model => model.City)
         </div>
 
         <div class="col-md-6">
-            @Html.DropDownList("State", states, new {@id = "state"})
+            <select id="states" name="StateID">
+                
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-6">
+            <label>Zipcode</label>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-md-6">
+            @Html.EditorFor(model => model.Zip)
         </div>
     </div>
 
     <hr />
 
-    <div class="row">
+    <div class="form-group row">
         <div class="col-md-6">
             <label>Purchase Price</label>
         </div>
@@ -157,24 +167,30 @@
 
     <div class="row">
         <div class="col-md-6">
-            <input type="text" id="purchase-price" />
+            <input type="number" value="@Model.PurchasePrice" id="purchasePrice" name="PurchasePrice" />
         </div>
 
         <div class="col-md-6">
-            @Html.DropDownList("PurchaseType", purchaseTypes, new { @id = "purchaseType" })
+            <select id="purchaseTypes" name="PurchaseTypeID">
+
+            </select>
         </div>
     </div>
 
-    <input type="hidden" value="@Model.Vehicle.ID" id="vehicleID"/>
+    <input type="hidden" value="@Model.VehicleID" id="vehicleID" name="VehicleID" />
+    <input type="hidden" value="@Model.SalePrice" id="sale-price" name="SalePrice" />
 
-    <button class="btn btn-primary" id="submit-button">Submit</button>
-
+    <div class="form-group row">
+        <div class="col-md-6">
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </div>
+    </div>
 </div>
+}
 
 @section Scripts
 {
-    <script src="~/Scripts/purchase.js"></script>    
+    <script src="~/Scripts/purchase.js"></script>
 }
-
 
 

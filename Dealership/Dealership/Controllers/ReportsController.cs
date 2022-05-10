@@ -26,5 +26,19 @@ namespace Dealership.Controllers
             List<InventoryReport> rows = _inventoryProvider.GetInventoryReportRows();
             return View(rows);
         }
+
+        [HttpGet]
+        public ActionResult Sales()
+        {
+            SalesReportViewModel vm = _inventoryProvider.GetSalesReport(null, null);
+
+            return View(vm);
+        }
+
+        [HttpGet]
+        public ActionResult SalesReportSearch(DateTime? startDate, DateTime? endDate)
+        {
+            return Json(_inventoryProvider.GetSalesReport(startDate, endDate), JsonRequestBehavior.AllowGet);
+        }
     }
 }

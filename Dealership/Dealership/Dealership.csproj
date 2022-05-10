@@ -219,6 +219,7 @@
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\EditVehicleViewModel.cs" />
     <Compile Include="Models\ContactRequest.cs" />
+    <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\Interior.cs" />
     <Compile Include="Models\InventoryReport.cs" />
     <Compile Include="Models\Make.cs" />
@@ -230,6 +231,7 @@
     <Compile Include="Models\PurchaseType.cs" />
     <Compile Include="Models\PurchaseViewModel.cs" />
     <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\SalesReportViewModel.cs" />
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\TransmissionType.cs" />
@@ -249,6 +251,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\contactRequest.css" />
     <Content Include="Content\core.css" />
+    <Content Include="Content\graybackground.jpg" />
+    <Content Include="Content\home.css" />
     <Content Include="Content\inventorySearch.css" />
     <Content Include="Content\salesList.css" />
     <Content Include="Content\specials.css" />
@@ -257,7 +261,9 @@
     <Content Include="Deploy Scripts\Stored Procedures\AddModel.sql" />
     <Content Include="Deploy Scripts\Stored Procedures\AddMake.sql" />
     <Content Include="Deploy Scripts\Stored Procedures\AddUserToDb.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetFeaturedVehicles.sql" />
     <Content Include="Deploy Scripts\Stored Procedures\GetPurchaseTypes.sql" />
+    <Content Include="Deploy Scripts\Stored Procedures\GetSalesReport.sql" />
     <Content Include="Deploy Scripts\Stored Procedures\GetStates.sql" />
     <Content Include="Deploy Scripts\Stored Procedures\GetUserByID.sql" />
     <Content Include="Deploy Scripts\Stored Procedures\GetInventoryReportRows.sql" />
@@ -285,9 +291,11 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\addModel.js" />
+    <Content Include="Scripts\addEditVehicle.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\home.js" />
     <Content Include="Scripts\inventorySearch.js" />
     <Content Include="Scripts\addMake.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -301,6 +309,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\purchase.js" />
+    <Content Include="Scripts\salesReport.js" />
     <Content Include="Scripts\specials.js" />
     <Content Include="Scripts\sales.js" />
     <Content Include="Scripts\vehicles.js" />
@@ -336,7 +345,6 @@
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Inventory\New.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Admin\AddVehicle.cshtml" />
@@ -356,6 +364,7 @@
     <Content Include="Views\Admin\AddModel.cshtml" />
     <Content Include="Views\Admin\AddMake.cshtml" />
     <Content Include="Views\Sales\Purchase.cshtml" />
+    <Content Include="Views\Reports\Sales.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

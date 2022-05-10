@@ -13,7 +13,7 @@
 	@msrp INT,
 	@salePrice INT,
 	@description NVARCHAR(255),
-	@picture VARBINARY(MAX),
+	@picture VARBINARY(MAX) = NULL,
 	@isFeatured BIT
 AS
 	UPDATE dbo.Vehicle
@@ -31,7 +31,14 @@ AS
 		MSRP = @msrp,
 		SalePrice = @salePrice,
 		[Description] = @description,
-		Picture = @picture,
 		Featured = @isFeatured
 	WHERE
 		@ID = ID
+
+
+	IF @picture IS NOT NULL
+	BEGIN
+		UPDATE dbo.Vehicle
+		SET Picture = @picture
+		WHERE @ID = ID
+	END

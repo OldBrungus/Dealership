@@ -13,15 +13,19 @@ using Dealership.Factories;
 
 namespace Dealership.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private IContactRequestProvider _contactRequestProvider = ContactFactory.CreateContactRequestProvider();
         private ISpecialsProvider _specialsProvider = SpecialsFactory.GetSpecialsProvider();
+        private IInventoryProvider _inventoryProvider = InventoryFactory.CreateInventoryProvider();
 
-        // GET: Home
         public ActionResult Index()
         {
-            return View();
+            HomeViewModel homeVM = new HomeViewModel();
+            homeVM.Specials = _specialsProvider.GetSpecials();
+            homeVM.Vehicles = _inventoryProvider.GetFeaturedVehicles();
+            return View(homeVM);
         }
 
         [AllowAnonymous]
@@ -33,7 +37,6 @@ namespace Dealership.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model, string returnUrl)
         {
@@ -63,7 +66,7 @@ namespace Dealership.Controllers
                 if (!string.IsNullOrEmpty(returnUrl))
                     return Redirect(returnUrl);
                 else
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Index", "Sales");
             }
         }
 
@@ -88,7 +91,7 @@ namespace Dealership.Controllers
         {
             if (string.IsNullOrEmpty(request.PhoneNumber) && string.IsNullOrEmpty(request.Email))
             {
-                ViewBag.Message = "Either a Phone Number or and Email Address is required.";
+                ViewBag.Message = "Either a Phone Number or an Email Address is required.";
                 return View(request);
             }
 

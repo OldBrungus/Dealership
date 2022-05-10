@@ -53,7 +53,7 @@ namespace Dealership.Providers
             addVehicleViewModel.BodyStyles = _inventoryDAL.GetBodyStyles();
             addVehicleViewModel.Colors = _inventoryDAL.GetColors();
             addVehicleViewModel.Interiors = _inventoryDAL.GetInteriors();
-            addVehicleViewModel.Models = _inventoryDAL.GetModels();
+            addVehicleViewModel.Models = new List<Model>();
             addVehicleViewModel.Makes = _inventoryDAL.GetMakes();
             addVehicleViewModel.TransmissionTypes = _inventoryDAL.GetTransmissionTypes();
 
@@ -67,7 +67,7 @@ namespace Dealership.Providers
             vehicleVM.BodyStyles = _inventoryDAL.GetBodyStyles();
             vehicleVM.Colors = _inventoryDAL.GetColors();
             vehicleVM.Interiors = _inventoryDAL.GetInteriors();
-            vehicleVM.Models = _inventoryDAL.GetModels();
+            vehicleVM.Models = new List<Model>();
             vehicleVM.Makes = _inventoryDAL.GetMakes();
             vehicleVM.TransmissionTypes = _inventoryDAL.GetTransmissionTypes();
 
@@ -76,7 +76,11 @@ namespace Dealership.Providers
 
         public void EditVehicle(EditVehicleViewModel vehicleVM)
         {
-            vehicleVM.PictureBytes = ConvertImageToByteArray(vehicleVM.Picture);
+            if (vehicleVM.Picture != null)
+            {
+                vehicleVM.PictureBytes = ConvertImageToByteArray(vehicleVM.Picture);
+            }
+            
            _inventoryDAL.EditVehicle(vehicleVM);
         }
 
