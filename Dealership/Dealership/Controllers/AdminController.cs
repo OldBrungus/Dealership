@@ -148,8 +148,8 @@ namespace Dealership.Controllers
         [HttpPost]
         public void AddModel(AddModelViewModel addModelVM)
         {
-            string userID = User.Identity.GetUserId();
-            _adminProvider.AddModel(addModelVM.ModelName, addModelVM.MakeID, userID);
+            string userName = User.Identity.GetUserName();
+            _adminProvider.AddModel(addModelVM.ModelName, addModelVM.MakeID, userName);
             Response.Redirect("/Admin/AddModel");
         }
 
@@ -169,8 +169,8 @@ namespace Dealership.Controllers
         [HttpPost]
         public void AddMake(Make make)
         {
-            string userID = User.Identity.GetUserId();
-            _adminProvider.AddMake(make, userID);
+            string userName = User.Identity.Name;
+            _adminProvider.AddMake(make, userName);
 
             Response.Redirect("/Admin/AddMake");
         }

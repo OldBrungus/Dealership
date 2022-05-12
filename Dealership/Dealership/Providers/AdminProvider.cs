@@ -100,14 +100,14 @@ namespace Dealership.Providers
             return  _inventoryDAL.GetMakes();
         }
 
-        public void AddModel(string modelName, int makeID, string userID)
+        public void AddModel(string modelName, int makeID, string userName)
         {
-            _inventoryDAL.AddModel(modelName, makeID, userID);
+            _inventoryDAL.AddModel(modelName, makeID, userName);
         }
 
-        public void AddMake(Make make, string userID)
+        public void AddMake(Make make, string userName)
         {
-            _inventoryDAL.AddMake(make, userID);
+            _inventoryDAL.AddMake(make, userName);
         }
         public List<Model> GetModels()
         {

@@ -20,10 +20,11 @@ namespace Dealership.Tests
         {
             string modelName = "Canyon";
             int makeID = 0;
+            string userName = "admin";
 
             IAdminProvider adminProvider = AdminFactory.CreateAdminProvider();
 
-            Assert.Throws<SqlException>(() => adminProvider.AddModel(modelName, makeID));
+            Assert.Throws<SqlException>(() => adminProvider.AddModel(modelName, makeID, userName));
         }
     }
 }

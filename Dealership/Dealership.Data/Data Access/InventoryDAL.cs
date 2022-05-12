@@ -336,6 +336,7 @@ namespace Dealership.Data_Access
         }
 
         public List<Make> GetMakes()
+        
         {
             List<Make> makes = new List<Make>();
 
@@ -354,6 +355,9 @@ namespace Dealership.Data_Access
                         Make make = new Make();
                         make.MakeID = ViewModelMappingHelper.Parse<int>(reader, "MakeID");
                         make.DisplayName = ViewModelMappingHelper.Parse<string>(reader, "Make");
+                        make.CreatedBy = ViewModelMappingHelper.Parse<string>(reader, "CreatedBy");
+                        make.CreatedOn = ViewModelMappingHelper.Parse<DateTime>(reader, "CreatedOn");
+                        make.DateString = make.CreatedOn.ToString();
 
                         makes.Add(make);
                     }
@@ -385,6 +389,9 @@ namespace Dealership.Data_Access
                         model.Make = new Make();
                         model.Make.DisplayName = ViewModelMappingHelper.Parse<string>(reader, "Make");
                         model.Make.MakeID = ViewModelMappingHelper.Parse<int>(reader, "MakeID");
+                        model.CreatedBy = ViewModelMappingHelper.Parse<string>(reader, "CreatedBy");
+                        model.CreatedOn = ViewModelMappingHelper.Parse<DateTime>(reader, "CreatedOn");
+                        model.DateString = model.CreatedOn.ToString();
 
                         models.Add(model);
                     }
@@ -505,14 +512,14 @@ namespace Dealership.Data_Access
             return results;
         }
 
-        public void AddModel(string modelName, int makeID, string userID)
+        public void AddModel(string modelName, int makeID, string userName)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "dbo.AddModel";
             cmd.Parameters.AddWithValue("@modelName", modelName);
             cmd.Parameters.AddWithValue("@makeID", makeID);
-            cmd.Parameters.AddWithValue("@createdBy", userID);
+            cmd.Parameters.AddWithValue("@createdBy", userName);
 
             using (cmd.Connection = SqlConnectionHelper.GetConnection())
             {
@@ -522,13 +529,13 @@ namespace Dealership.Data_Access
             }
         }
 
-        public void AddMake(Make make, string userID)
+        public void AddMake(Make make, string userName)
         {
             SqlCommand cmd = new SqlCommand();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "dbo.AddMake";
             cmd.Parameters.AddWithValue("@displayName", make.DisplayName);
-            cmd.Parameters.AddWithValue("@createdBy", userID);
+            cmd.Parameters.AddWithValue("@createdBy", userName);
 
             using (cmd.Connection = SqlConnectionHelper.GetConnection())
             {

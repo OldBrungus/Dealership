@@ -1,0 +1,6 @@
+C:\Users\dbern\Dealership\Dealership\Dealership.Models\bin\Debug\Dealership.Models.dll
+C:\Users\dbern\Dealership\Dealership\Dealership.Models\bin\Debug\Dealership.Models.pdb
+C:\Users\dbern\Dealership\Dealership\Dealership.Models\obj\Debug\Dealership.Models.csproj.CoreCompileInputs.cache
+C:\Users\dbern\Dealership\Dealership\Dealership.Models\obj\Debug\Dealership.Models.dll
+C:\Users\dbern\Dealership\Dealership\Dealership.Models\obj\Debug\Dealership.Models.pdb
+C:\Users\dbern\Dealership\Dealership\Dealership.Models\obj\Debug\Dealership.Models.csproj.AssemblyReference.cache

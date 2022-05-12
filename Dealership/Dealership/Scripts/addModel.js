@@ -29,7 +29,7 @@ function buildTable(models) {
     </td>
 
     <td>
-        ${model.CreatedOn}
+        ${model.DateString}
     </td>
 </tr>`)
     })

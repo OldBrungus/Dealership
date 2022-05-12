@@ -14,8 +14,8 @@ namespace Dealership.Interfaces
         EditVehicleViewModel GetEditVehicleResources(int id);
         void DeleteVehicle(int id);
         List<Make> GetMakes();
-        void AddModel(string modelName, int makeID, string userID);
-        void AddMake(Make make, string userID);
+        void AddModel(string modelName, int makeID, string userName);
+        void AddMake(Make make, string userName);
         List<Model> GetModels();
     }
 }

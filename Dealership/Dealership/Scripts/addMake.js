@@ -14,16 +14,17 @@ function getMakes() {
 
 function fillTable(makes) {
     makes.forEach(function (make) {
+
         $('#make-table').append(`
             <tr>
                 <td>
                     ${make.DisplayName}
                 </td>
                 <td>
-                    ${make.CreatedOn}
+                    ${make.CreatedBy}
                 </td>
                 <td>
-                    ${make.CreatedBy}
+                    ${make.DateString}
                 </td>
             </tr>`)
     })
